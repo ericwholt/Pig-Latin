@@ -1,0 +1,7 @@
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\obj\Debug\Pig-Latin.csprojAssemblyReference.cache
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\obj\Debug\Pig-Latin.csproj.CoreCompileInputs.cache
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\bin\Debug\Pig-Latin.exe.config
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\bin\Debug\Pig-Latin.exe
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\bin\Debug\Pig-Latin.pdb
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\obj\Debug\Pig-Latin.exe
+C:\Users\fatmo\Grand Circus\Capstone\1\Pig-Latin\Pig-Latin\obj\Debug\Pig-Latin.pdb
