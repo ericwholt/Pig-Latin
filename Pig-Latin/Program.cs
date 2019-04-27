@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Pig_Latin
 {
@@ -11,31 +7,58 @@ namespace Pig_Latin
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(TranslateToPigLatin("Translate."));
-            Console.WriteLine(TranslateToPigLatin("united"));
-            string userInput = Console.ReadLine();
-
-            if (userInput.Trim().Contains(" "))
+            bool userStillTranslating = true;
+            Console.WriteLine("Welcome to the Pig Latin Translator!");
+            Console.WriteLine();
+            while (userStillTranslating)
             {
-                string[] sentenceSplit = userInput.Split(' ');
-                string translatedSentence = "";
-                foreach (string item in sentenceSplit)
+                Console.Write("Enter a line to be translated: ");
+                string userInput = Console.ReadLine();
+                if (userInput.Length < 0)
                 {
-                    translatedSentence += TranslateToPigLatin(item) + " ";
+                    Console.Clear();
+                    Console.WriteLine("Your nothing translates into: ");
                 }
-                Console.WriteLine(translatedSentence.Trim());
-            }
-            else
-            {
-                Console.WriteLine(TranslateToPigLatin(userInput));
+                else if (userInput.Trim().Contains(" "))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Your sentence translation");
+                    Console.WriteLine(TranslateSentenceToPigLatin(userInput));
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Your word translation: ");
+                    Console.WriteLine(TranslateWordToPigLatin(userInput));
+                }
+                Console.WriteLine();
+                userStillTranslating = Continue("Continue Translating? y/n");
             }
         }
 
-        public static string TranslateToPigLatin(string word)
+        private static string[] SplitSentence(string sentence)
         {
-            if (Regex.IsMatch(word, @"^[a-zA-Z.!?]+$"))
+            return sentence.Split(' ');
+        }
+        public static string TranslateSentenceToPigLatin(string sentence)
+        {
+            string[] wordArray = SplitSentence(sentence);
+            sentence = "";
+            foreach (string item in wordArray)
             {
+                sentence += TranslateWordToPigLatin(item) + " ";
+            }
 
+            return sentence;
+        }
+        public static string TranslateWordToPigLatin(string word)
+        {
+            if (Regex.IsMatch(word, @"^[a-zA-Z.!?']+$"))
+            {
+                if (Regex.IsMatch(word, @"^[.!?']+$"))
+                {
+                    return word;
+                }
 
                 char[] vowelsLower = { 'a', 'e', 'i', 'o', 'u' };
                 string[] res = Regex.Split(word, "[aeiouAEIOU]");
@@ -52,9 +75,36 @@ namespace Pig_Latin
             }
             else
             {
-                return word;            
+                return word;
             }
         }
 
+        /// <summary>
+        /// Allows to display custom message to see if they want to continue with n,no,y,yes
+        /// </summary>
+        /// <returns>bool</returns>
+        public static bool Continue(string message)
+        {
+            Console.WriteLine(message);
+            string input = Console.ReadLine().Trim().ToLower();
+            bool run = false;
+
+            if (input == "n" || input == "no")
+            {
+                Console.Clear();
+                Console.WriteLine("Good bye");
+                run = false;
+            }
+            else if (input == "y" || input == "yes")
+            {
+                run = true;
+            }
+            else
+            {
+                Console.WriteLine("I don't understand. Try again!");
+                run = Continue(message);
+            }
+            return run;
+        }
     }
 }
